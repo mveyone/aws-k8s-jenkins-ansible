@@ -1,0 +1,10 @@
+---
+- name : "docker-compose auto build"
+  hosts: localhost
+  tasks:  
+   - name: stop docker compose 1
+     command: docker-compose down
+     ignore_errors: yes
+   - name: run docker-compose
+     command: docker-compose up -d
+     ignore_errors: yes

@@ -1,0 +1,27 @@
+---
+- name: "Build container with ansible"
+  hosts: localhost
+  tasks:
+  - name: stop running container
+    command: docker stop mveyone/docker-comose-nodejs-app
+    ignore_errors: yes
+
+  - name: remove stopped container
+    command: docker rm mveyone/docker-comose-nodejs-app
+    ignore_errors: yes
+  
+  - name: remove used image
+    command: docker rmi mveyone/docker-comose-nodejs-app
+    ignore_errors: yes
+    
+  - name: build docker image from dockerfile
+    command: docker build -t mveyone/docker-comose-nodejs-app .  
+
+  # - name: create tag to image
+  #   command: docker tag my-app mveyone/ejs-node-mongo-express-app:2.0
+
+  - name: push image to dockerhub
+    command: docker push mveyone/docker-comose-nodejs-app
+
+  # - name: run container from image
+  #   command: docker run -d --name my-app -p 3000 mveyone/ejs-node-mongo-express-app:2.0
