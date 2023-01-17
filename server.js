@@ -19,13 +19,13 @@ const app=express();
 
 // ###############################Connect to MongoDB wih docker-compose###############################
 // mongoose.connect('mongodb://mongo:27017/mydb?authSource=admin', { useNewUrlParser: true } ) local + dockercompose + k8s
-// mongoose.connect('mongodb://admin:password@mongodb?authSource=admin', { useNewUrlParser: true } ) // with docker 'mongoose.connect('mongodb://admin:password@mongodb/blogs?authSource=admin' + localhost we use localhost
-// .then(() => console.log('MongoDB Connected'))
-//   .catch(err => console.log(err));
-// #########################################what is used now is k8s #####################################""
-  mongoose.connect('mongodb://admin:password@mongodb/blogs?authSource=admin', { useNewUrlParser: true } ) // with docker 'mongoose.connect('mongodb://admin:password@mongodb/blogs?authSource=admin' + localhost we use localhost
+mongoose.connect('mongodb://admin:password@mongodb?authSource=admin', { useNewUrlParser: true } ) // with docker 'mongoose.connect('mongodb://admin:password@mongodb/blogs?authSource=admin' + localhost we use localhost
 .then(() => console.log('MongoDB Connected'))
   .catch(err => console.log(err));
+// #########################################what is used now is k8s #####################################""
+//   mongoose.connect('mongodb://admin:password@mongodb/blogs?authSource=admin', { useNewUrlParser: true } ) // with docker 'mongoose.connect('mongodb://admin:password@mongodb/blogs?authSource=admin' + localhost we use localhost
+// .then(() => console.log('MongoDB Connected'))
+//   .catch(err => console.log(err));
 
   
 //register view engine

@@ -6,8 +6,8 @@ services:
   # - 3000:3000
   my-app:
     restart: always
-    # build: .
-    image: mveyone/docker-comose-nodejs-app
+    build: .
+    # image: mveyone/docker-comose-nodejs-app
     ports:
       - '3000:3000'
     # external_links:
