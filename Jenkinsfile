@@ -6,7 +6,7 @@ node{
     stage('sending dockerfile to ansible server'){
         sshagent(['ansible-app']) {
          sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.92.42 '
-         sh 'scp /var/lib/jenkins/workspace/DEVOPS-CICD/* ubuntu@172.31.92.42:/home/ubuntu '
+         sh 'scp /var/lib/jenkins/workspace/devops-aws-jenkins-ansible-k8s-app/* ubuntu@172.31.92.42:/home/ubuntu '
          sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.92.42  unzip -o devops-jenkins-aws-k8s-ansible.zip '
       }
     }
@@ -29,8 +29,15 @@ node{
                //sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.92.42  docker login -u mveyone -p ${dockerhub-pass}"
                sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.92.42  docker image push mveyone/$JOB_NAME:v1.$BUILD_ID'
                sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.92.42  docker image push mveyone/$JOB_NAME:latest '
+               sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.92.42  docker image rm mveyone/$JOB_NAME:latest  mveyone/$JOB_NAME:v1.$BUILD_ID $JOB_NAME:v1.$BUILD_ID'
         
             }
         //}
     }
+    // stage('copy files from ansible to kubernetes server'){
+    //     sshagent(['ansible-app']){
+    //             sh 'ssh -o StrictHostKeyChecking=no ubuntu@k8s server ip local '
+    //             sh 'scp /var/lib/jenkins/workspace/devops-aws-jenkins-ansible-k8s-app/* ubuntu@k8s server ip local'    
+    //     }
+    // }
 }    
