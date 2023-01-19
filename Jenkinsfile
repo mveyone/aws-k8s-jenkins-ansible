@@ -39,6 +39,7 @@ node{
                 sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.27.57 '
                 sh 'scp /var/lib/jenkins/workspace/devops-aws/*  ubuntu@172.31.27.57:/home/ubuntu'   
                 sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.27.57 unzip -o devops-jenkins-aws-k8s-ansible.zip ' 
-        }
+                sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.27.57 ansible-playbook k8s/k8s-playbook.yml'   
+                   }
     }
 }    
