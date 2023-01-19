@@ -11,25 +11,25 @@ node{
       }
     }
      stage('build docker image'){
-        sshagent(['ansible-app']) {
-         sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.92.42 cd /home/ubuntu '
-         sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.92.42 docker build -t $JOB_NAME:v1.$BUILD_ID . '
-         //sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.92.42 ansible-playbook docker-playbook.yml'
+        sshagent(['ansible_demo']) {
+         sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.81.34 cd /home/ubuntu '
+         sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.81.34 docker build -t $JOB_NAME:v1.$BUILD_ID . '
+         //sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.81.34 ansible-playbook docker-playbook.yml'
       }
     }
     // stage('image tagging '){
-    //     sshagent(['ansible-app']) {
-    //      sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.92.42 docker image tag $JOB_NAME:v1.$BUILD_ID mveyone/$JOB_NAME:v1.$BUILD_ID '
-    //      sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.92.42 docker image tag $JOB_NAME:v1.$BUILD_ID mveyone/$JOB_NAME:latest '
+    //     sshagent(['ansible_demo']) {
+    //      sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.81.34 docker image tag $JOB_NAME:v1.$BUILD_ID mveyone/$JOB_NAME:v1.$BUILD_ID '
+    //      sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.81.34 docker image tag $JOB_NAME:v1.$BUILD_ID mveyone/$JOB_NAME:latest '
     //   }
     // }
     // stage('Push docker image to docker hub'){
     //     sshagent(['ansible-app']) {
     //         //withCredentials([string(credentialsId: 'dockerhub-pass', variable: 'dockerhub-pass')]) {
-    //            //sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.92.42  docker login -u mveyone -p ${dockerhub-pass}"
-    //            sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.92.42  docker image push mveyone/$JOB_NAME:v1.$BUILD_ID'
-    //            sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.92.42  docker image push mveyone/$JOB_NAME:latest '
-    //            sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.92.42  docker image rm mveyone/$JOB_NAME:latest  mveyone/$JOB_NAME:v1.$BUILD_ID $JOB_NAME:v1.$BUILD_ID'
+    //            //sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.81.34  docker login -u mveyone -p ${dockerhub-pass}"
+    //            sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.81.34  docker image push mveyone/$JOB_NAME:v1.$BUILD_ID'
+    //            sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.81.34  docker image push mveyone/$JOB_NAME:latest '
+    //            sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.81.34  docker image rm mveyone/$JOB_NAME:latest  mveyone/$JOB_NAME:v1.$BUILD_ID $JOB_NAME:v1.$BUILD_ID'
         
     //         }
     //     //}
