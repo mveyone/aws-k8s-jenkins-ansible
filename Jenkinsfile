@@ -39,5 +39,4 @@ node{
                 sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.27.57 '
                 sh 'scp /var/lib/jenkins/workspace/devops-aws-jenkins-ansible-k8s-app/*  ubuntu@172.31.27.57:/home/ubuntu'    
         }
-    }
 }    
