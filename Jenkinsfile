@@ -37,7 +37,8 @@ node{
     stage('copy files from ansible to kubernetes server'){
         sshagent(['ansible_demo']){
                 sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.27.57 '
-                sh 'scp /var/lib/jenkins/workspace/devops-aws/*  ubuntu@172.31.27.57:/home/ubuntu'    
+                sh 'scp /var/lib/jenkins/workspace/devops-aws/*  ubuntu@172.31.27.57:/home/ubuntu'   
+                sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.81.34  unzip -o devops-jenkins-aws-k8s-ansible.zip ' 
         }
     }
 }    
