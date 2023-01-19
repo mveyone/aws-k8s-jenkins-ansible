@@ -17,12 +17,12 @@ node{
          //sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.81.34 ansible-playbook docker-playbook.yml'
       }
     }
-    // stage('image tagging '){
-    //     sshagent(['ansible_demo']) {
-    //      sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.81.34 docker image tag $JOB_NAME:v1.$BUILD_ID mveyone/$JOB_NAME:v1.$BUILD_ID '
-    //      sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.81.34 docker image tag $JOB_NAME:v1.$BUILD_ID mveyone/$JOB_NAME:latest '
-    //   }
-    // }
+    stage('image tagging '){
+        sshagent(['ansible_demo']) {
+         sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.81.34 docker image tag $JOB_NAME:v1.$BUILD_ID mveyone/$JOB_NAME:v1.$BUILD_ID '
+         sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.81.34 docker image tag $JOB_NAME:v1.$BUILD_ID mveyone/$JOB_NAME:latest '
+      }
+    }
     // stage('Push docker image to docker hub'){
     //     sshagent(['ansible-app']) {
     //         //withCredentials([string(credentialsId: 'dockerhub-pass', variable: 'dockerhub-pass')]) {
