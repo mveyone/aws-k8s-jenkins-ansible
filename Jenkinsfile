@@ -34,10 +34,10 @@ node{
             }
         //}
     }
-    // // stage('copy files from ansible to kubernetes server'){
-    // //     sshagent(['ansible-app']){
-    // //             sh 'ssh -o StrictHostKeyChecking=no ubuntu@k8s server ip local '
-    // //             sh 'scp /var/lib/jenkins/workspace/devops-aws-jenkins-ansible-k8s-app/* ubuntu@k8s server ip local'    
-    // //     }
+    stage('copy files from ansible to kubernetes server'){
+        sshagent(['ansible_demo']){
+                sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.27.57 '
+                sh 'scp /var/lib/jenkins/workspace/devops-aws-jenkins-ansible-k8s-app/*  ubuntu@172.31.27.57:/home/ubuntu'    
+        }
     }
 }    
