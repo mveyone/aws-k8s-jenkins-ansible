@@ -4,7 +4,7 @@ node{
        git branch: 'main', credentialsId: 'github', url: 'https://github.com/mveyone/aws-k8s-jenkins-ansible.git'
     // }
     stage('sending dockerfile to ansible server'){
-        sshagent(['ansible-demo']) {
+        sshagent(['ansible_demo']) {
          sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.94.243 '
          sh 'scp /var/lib/jenkins/workspace/devops-aws/* ubuntu@172.31.94.243:/home/ubuntu '
          sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.94.243  unzip -o devops-jenkins-aws-k8s-ansible.zip '
