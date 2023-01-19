@@ -24,7 +24,7 @@ node{
       }
     }
     stage('Push docker image to docker hub'){
-        sshagent(['ansible-app']) {
+        sshagent(['ansible_demo']) {
             //withCredentials([string(credentialsId: 'dockerhub-pass', variable: 'dockerhub-pass')]) {
                //sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.81.34  docker login -u mveyone -p ${dockerhub-pass}"
                sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.81.34  docker image push mveyone/$JOB_NAME:v1.$BUILD_ID'
