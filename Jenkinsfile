@@ -2,7 +2,7 @@ node{
     
     stage('git checkout'){
        git branch: 'main', credentialsId: 'github', url: 'https://github.com/mveyone/aws-k8s-jenkins-ansible.git'
-    // }
+    }
     stage('sending dockerfile to ansible server'){
         sshagent(['ansible_demo']) {
          sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.81.34 '
@@ -39,4 +39,5 @@ node{
                 sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.27.57 '
                 sh 'scp /var/lib/jenkins/workspace/devops-aws-jenkins-ansible-k8s-app/*  ubuntu@172.31.27.57:/home/ubuntu'    
         }
+    }
 }    
