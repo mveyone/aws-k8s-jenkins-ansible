@@ -10,13 +10,13 @@ node{
          sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.81.34  unzip -o devops-jenkins-aws-k8s-ansible.zip '
       }
     }
-    //  stage('build docker image'){
-    //     sshagent(['ansible-app']) {
-    //      sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.92.42 cd /home/ubuntu '
-    //      sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.92.42 docker build -t $JOB_NAME:v1.$BUILD_ID . '
-    //      //sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.92.42 ansible-playbook docker-playbook.yml'
-    //   }
-    // }
+     stage('build docker image'){
+        sshagent(['ansible-app']) {
+         sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.92.42 cd /home/ubuntu '
+         sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.92.42 docker build -t $JOB_NAME:v1.$BUILD_ID . '
+         //sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.92.42 ansible-playbook docker-playbook.yml'
+      }
+    }
     // stage('image tagging '){
     //     sshagent(['ansible-app']) {
     //      sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.92.42 docker image tag $JOB_NAME:v1.$BUILD_ID mveyone/$JOB_NAME:v1.$BUILD_ID '
