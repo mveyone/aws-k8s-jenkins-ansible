@@ -23,17 +23,17 @@ node{
          sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.81.34 docker image tag $JOB_NAME:v1.$BUILD_ID mveyone/$JOB_NAME:latest '
       }
     }
-    // stage('Push docker image to docker hub'){
-    //     sshagent(['ansible-app']) {
-    //         //withCredentials([string(credentialsId: 'dockerhub-pass', variable: 'dockerhub-pass')]) {
-    //            //sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.81.34  docker login -u mveyone -p ${dockerhub-pass}"
-    //            sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.81.34  docker image push mveyone/$JOB_NAME:v1.$BUILD_ID'
-    //            sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.81.34  docker image push mveyone/$JOB_NAME:latest '
-    //            sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.81.34  docker image rm mveyone/$JOB_NAME:latest  mveyone/$JOB_NAME:v1.$BUILD_ID $JOB_NAME:v1.$BUILD_ID'
+    stage('Push docker image to docker hub'){
+        sshagent(['ansible-app']) {
+            //withCredentials([string(credentialsId: 'dockerhub-pass', variable: 'dockerhub-pass')]) {
+               //sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.81.34  docker login -u mveyone -p ${dockerhub-pass}"
+               sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.81.34  docker image push mveyone/$JOB_NAME:v1.$BUILD_ID'
+               sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.81.34  docker image push mveyone/$JOB_NAME:latest '
+               sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.81.34  docker image rm mveyone/$JOB_NAME:latest  mveyone/$JOB_NAME:v1.$BUILD_ID $JOB_NAME:v1.$BUILD_ID'
         
-    //         }
-    //     //}
-    // }
+            }
+        //}
+    }
     // // stage('copy files from ansible to kubernetes server'){
     // //     sshagent(['ansible-app']){
     // //             sh 'ssh -o StrictHostKeyChecking=no ubuntu@k8s server ip local '
