@@ -2,3 +2,4 @@ node_modules
 sandbox.txt
 devops.pem
 ubuntu-key.pem
+/terraform/ubuntu-key.pem
